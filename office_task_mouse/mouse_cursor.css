@@ -1,0 +1,46 @@
+body{ margin: 0px  }
+
+#my_canvas{ background:#FFF; border:#bbb 1px solid; margin-top:100px;margin-left: 30px;}
+label
+{
+    font-family: cursive;
+    font-weight: bold;
+}
+header{
+
+    background: steelblue;
+
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    max-width: 100%;
+    font-family: serif;
+
+}
+span{
+
+    float: left;
+    font-size: 42px;
+    margin-top: 15px;
+    font-weight: bold;
+    margin-left: 3px;
+
+}
+
+input
+{
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+    font-family: cursive;
+    border-radius: 2px;
+}
+p{
+    margin-left: 30px;
+}
+img{
+    width: 5%;height: auto;
+    float: left;
+    margin-left: 10px;
+
+}

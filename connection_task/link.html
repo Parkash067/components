@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connection</title>
+    <link rel="stylesheet" type="text/css" href="joint_js_lib/joint.css" />
+    <link rel="stylesheet" type="text/css" href="joint_js_lib/custom.css">
+    <script src="joint_js_lib/jquery.js"></script>
+    <script src="joint_js_lib/jquery-ui.min.js"></script>
+    <script src="joint_js_lib/loadash.js"></script>
+    <script src="joint_js_lib/backbone.js"></script>
+    <script src="joint_js_lib/joint.js"></script>
+
+</head>
+<body>
+<div id="mydiv" class="draggable ui-widget-content"><img src="dialog_close.png" class="image" onclick="inspectorInvisible()">
+    <h3> Inspector </h3>
+    <label>Style:</label>
+    <select id="shapes">
+        <option value="6 5" >Dashed</option>
+        <option value=" " >Solid</option>
+    </select>
+    <br><br>
+    <label>Trajectory:</label>
+    <select id="trajectory" >
+        <option value="sharply" class="traject">Normal</option>
+        <option value="smooth" class="traject">Smooth</option>
+    </select>
+    <br><br>
+    <label>Color:</label>
+
+    <input type="color" id="color">
+    <br><br>
+    <button  class="button" target="_blank" onclick="att()">Change</button>
+</div>
+<div id="paper" ></div>
+</body>
+
+<script src="joint_js_lib/inspector.js"></script>
+
+</html>

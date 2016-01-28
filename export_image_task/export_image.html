@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>export_image</title>
+    <link rel="stylesheet" type="text/css" href="joint_js_lib/joint.css" />
+    <link rel="stylesheet" type="text/css" href="joint_js_lib/custom.css">
+    <script src="joint_js_lib/jquery.js"></script>
+    <script src="joint_js_lib/jquery-ui.min.js"></script>
+    <script src="joint_js_lib/loadash.js"></script>
+    <script src="joint_js_lib/backbone.js"></script>
+    <script src="joint_js_lib/joint.js"></script>
+    <script src="joint_js_lib/joint.format.svg.js"></script>
+</head>
+<body>
+<div id="paper"></div>
+<button class="btn" id="btn-open-svg">open as SVG</button>
+<script>
+    (function() {
+
+        var graph = new joint.dia.Graph;
+        var paper = new joint.dia.Paper({
+            el: $('#paper'),
+            width: 400,
+            height: 300,
+            gridSize: 1,
+            model: graph
+        });
+
+        var r = new joint.shapes.basic.Rect({
+            position: { x: 50, y: 50 }, size: { width: 90, height: 60 },
+            attrs: { rect: { fill: '#31D0C6', stroke: 'none' }, text: { text: 'rect', fill: 'white' } }
+        });
+        var c = new joint.shapes.basic.Circle({
+            position: { x: 220, y: 150 }, size: { width: 90, height: 60 },
+            attrs: { circle: { fill: '#FE854F', stroke: 'none' }, text: { text: 'ellipse', fill: 'white' } }
+        });
+
+        graph.addCells([r, c]);
+
+        $('#btn-open-svg').on('click', function() { paper.openAsSVG(); });
+
+    }())
+</script>
+</body>
+</html>

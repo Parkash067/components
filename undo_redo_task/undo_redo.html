@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undo_redo</title>
+    <link rel="stylesheet" type="text/css" href="joint_js_lib/joint.css" />
+    <link rel="stylesheet" type="text/css" href="joint_js_lib/custom.css">
+    <script src="joint_js_lib/jquery.js"></script>
+    <script src="joint_js_lib/jquery-ui.min.js"></script>
+    <script src="joint_js_lib/loadash.js"></script>
+    <script src="joint_js_lib/backbone.js"></script>
+    <script src="joint_js_lib/joint.js"></script>
+    <script src="joint_js_lib/joint.dia.command.js"></script>
+</head>
+<body>
+<button class="btn" id="btn-undo">undo</button>
+<button class="btn" id="btn-redo">redo</button>
+<div id="paper" class="paper"></div>
+<script>
+    (function() {
+
+        var graph = new joint.dia.Graph;
+        var paper = new joint.dia.Paper({
+            el: $('#paper'),
+            width: 400,
+            height: 300,
+            gridSize: 1,
+            model: graph
+        });
+
+        var commandManager = new joint.dia.CommandManager({ graph: graph });
+
+        var r = new joint.shapes.basic.Rect({
+            position: { x: 50, y: 50 }, size: { width: 90, height: 60 },
+            attrs: { rect: { fill: '#31D0C6', stroke: '#4B4A67', 'stroke-width': 8 }, text: { text: 'rect', fill: 'white' } }
+        });
+
+        var c = new joint.shapes.basic.Circle({
+            position: { x: 220, y: 150 }, size: { width: 100, height: 60 },
+            attrs: { circle: { fill: '#FE854F', 'stroke-width': 8, stroke: '#4B4A67' }, text: { text: 'ellipse', fill: 'white' } }
+        });
+
+        graph.addCells([r, c]);
+
+        $('#btn-undo').on('click', _.bind(commandManager.undo, commandManager));
+        $('#btn-redo').on('click', _.bind(commandManager.redo, commandManager));
+     //  document.addEventListener('keydown',function(event){console.log(event)}, _.bind(commandManager.undo, commandManager));
+
+        /*document.addEventListener('keydown',function(event){
+            console.log(event);
+
+})*/
+
+        document.addEventListener('keydown', function (event) {
+
+               if(event.which===90 && event.ctrlKey){
+                   //console.log(event.which);
+                   commandManager.undo();
+
+               }
+            if(event.which===90 && event.metaKey){
+                //console.log(event.which);
+                commandManager.undo();
+
+            }
+
+        });
+
+
+        document.addEventListener('keydown',function(event)
+        {
+            if(event.which===89 && event.ctrlKey){
+              //  console.log(event.which);
+                commandManager.redo();
+
+            }
+            else if((event.which===90 && event.ctrlKey) && event.shiftKey){
+                console.log(event.which);//for shift key event.shiftkey
+                commandManager.redo();
+                commandManager.redo();
+            }
+        })
+
+
+
+
+    }())
+</script>
+</body>
+</html>
